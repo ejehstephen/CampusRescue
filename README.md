@@ -29,6 +29,14 @@ The platform features an instant multi-persona simulator allowing judges to expe
 
 ---
 
+## 🎬 Live Product Walkthrough Demo
+
+A 2-minute recording showcasing the end-to-end emergency response lifecycle (Student 1-Tap SOS Beacon ➔ Dispatcher Audio Siren & Campus Radar ➔ Patrol Dispatch & Scene Resolution):
+
+![CampusRescue Demo Walkthrough](assets/demo/demo_walkthrough.webp)
+
+---
+
 ## ⚡ Quick Start: Local Evaluation via Docker
 
 If you prefer testing locally with a full containerized PostgreSQL database and seeded test records, the entire environment spins up in **under 2 minutes**:
