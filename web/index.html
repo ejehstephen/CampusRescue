@@ -4,43 +4,158 @@
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
   -->
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="CampusRescue - Zero-latency emergency dispatch and student SOS beacon platform.">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="sos">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CampusRescue">
+  <meta name="theme-color" content="#0B0F19">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>sos</title>
+  <title>CampusRescue — Campus Emergency & Telemetry System</title>
   <link rel="manifest" href="manifest.json">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #0B0F19;
+      color: #F8FAFC;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .loading-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #0B0F19;
+      z-index: 99999;
+      transition: opacity 0.35s ease-out;
+    }
+    .pulse-logo {
+      width: 74px;
+      height: 74px;
+      background: linear-gradient(135deg, #FF334B 0%, #BE123C 100%);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 40px rgba(255, 51, 75, 0.45);
+      animation: pulse 1.8s infinite ease-in-out;
+    }
+    .pulse-logo svg {
+      width: 38px;
+      height: 38px;
+      fill: #ffffff;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.96); box-shadow: 0 0 25px rgba(255, 51, 75, 0.3); }
+      50% { transform: scale(1.04); box-shadow: 0 0 50px rgba(255, 51, 75, 0.65); }
+      100% { transform: scale(0.96); box-shadow: 0 0 25px rgba(255, 51, 75, 0.3); }
+    }
+    .app-title {
+      margin-top: 22px;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #FFFFFF;
+    }
+    .app-subtitle {
+      margin-top: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #00F0FF;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .progress-bar-container {
+      margin-top: 24px;
+      width: 190px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+    .progress-bar {
+      position: absolute;
+      left: -40%;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, #00F0FF, #FF334B);
+      border-radius: 6px;
+      animation: loadingBar 1.2s infinite ease-in-out;
+    }
+    @keyframes loadingBar {
+      0% { left: -40%; width: 40%; }
+      50% { left: 35%; width: 65%; }
+      100% { left: 100%; width: 40%; }
+    }
+  </style>
 </head>
 <body>
-  <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
+  <!-- Dark Tactical Splash Screen -->
+  <div id="app-splash" class="loading-container">
+    <div class="pulse-logo">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5zm-1 6h2v6h-2V8zm0 8h2v2h-2v-2z"/>
+      </svg>
+    </div>
+    <div class="app-title">CampusRescue</div>
+    <div class="app-subtitle">Initializing Tactical Network...</div>
+    <div class="progress-bar-container">
+      <div class="progress-bar"></div>
+    </div>
+  </div>
 
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
   <script src="flutter_bootstrap.js" async></script>
+  <script>
+    function removeSplash() {
+      var splash = document.getElementById('app-splash');
+      if (splash) {
+        splash.style.opacity = '0';
+        setTimeout(function() {
+          if (splash && splash.parentNode) {
+            splash.parentNode.removeChild(splash);
+          }
+        }, 380);
+      }
+    }
+
+    // Modern Flutter first frame event
+    window.addEventListener('flutter-first-frame', removeSplash);
+
+    // Fallback: observe DOM for Flutter view mount
+    var observer = new MutationObserver(function(mutations) {
+      if (document.querySelector('flutter-view') || document.querySelector('flt-glass-pane')) {
+        observer.disconnect();
+        removeSplash();
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Safety timeout fallback
+    setTimeout(removeSplash, 4500);
+  </script>
 </body>
 </html>

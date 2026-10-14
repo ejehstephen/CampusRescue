@@ -1,12 +1,12 @@
 {
-    "name": "sos",
-    "short_name": "sos",
+    "name": "CampusRescue - Campus Emergency & Telemetry System",
+    "short_name": "CampusRescue",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
-    "orientation": "portrait-primary",
+    "background_color": "#0B0F19",
+    "theme_color": "#0B0F19",
+    "description": "Zero-latency campus emergency dispatch, GPS telemetry, and student SOS beacon platform.",
+    "orientation": "any",
     "prefer_related_applications": false,
     "icons": [
         {
