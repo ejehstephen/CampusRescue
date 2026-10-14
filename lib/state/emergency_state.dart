@@ -465,7 +465,7 @@ class EmergencyState extends ChangeNotifier {
         _popupAlertIncident = null;
       }
 
-      // When an incident is attended to (enRoute, arrived, acknowledged, resolved)
+      // When an incident is attended to ( acknowledged, resolved)
       // or if no pending incidents remain, stop the siren immediately!
       if (pendingIncidentsCount == 0 ||
           newStatus == IncidentStatus.resolved ||
