@@ -1,0 +1,18 @@
+# Serverpod Protocol Definition: Enums
+# Provides 100% type-safe enum synchronization across Serverpod backend and Flutter client.
+
+enum: UrgencyLevel
+values:
+  - low
+  - medium
+  - high
+
+---
+
+enum: IncidentStatus
+values:
+  - pending
+  - acknowledged
+  - enRoute
+  - arrived
+  - resolved

@@ -1,0 +1,24 @@
+# Serverpod Protocol Definition: Responder
+# Tracks active campus security and medical personnel with GPS coordinates and real-time mission status.
+
+class: Responder
+table: responders
+fields:
+  responderCode: String # e.g. "RESP-01"
+  name: String
+  role: String
+  phone: String
+  isAvailable: bool
+  currentZone: String
+  currentXRatio: double
+  currentYRatio: double
+  targetXRatio: double?
+  targetYRatio: double?
+  routeProgress: double
+  activeIncidentId: String?
+
+indexes:
+  responder_available_idx:
+    fields: isAvailable
+  responder_zone_idx:
+    fields: currentZone

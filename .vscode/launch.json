@@ -1,0 +1,34 @@
+{
+     // Use IntelliSense to learn about possible attributes.
+     // Hover to view descriptions of existing attributes.
+     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+     "version": "0.2.0",
+     "configurations": [
+          {
+               "name": "sos (Flutter App)",
+               "request": "launch",
+               "type": "dart",
+               "program": "lib/main.dart"
+          },
+          {
+               "name": "sos (profile mode)",
+               "request": "launch",
+               "type": "dart",
+               "program": "lib/main.dart",
+               "flutterMode": "profile"
+          },
+          {
+               "name": "sos (release mode)",
+               "request": "launch",
+               "type": "dart",
+               "program": "lib/main.dart",
+               "flutterMode": "release"
+          },
+          {
+               "name": "Serverpod Backend Server",
+               "request": "launch",
+               "type": "dart",
+               "program": "server/lib/server.dart"
+          }
+     ]
+}

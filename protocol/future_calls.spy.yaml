@@ -1,0 +1,8 @@
+# Serverpod Protocol Definition: FutureCall Escalation Payload
+# Used for server-side scheduling of SLA auto-escalation without external cron services.
+
+class: SlaEscalationPayload
+fields:
+  incidentId: String
+  escalatedUrgency: String
+  scheduledAt: DateTime

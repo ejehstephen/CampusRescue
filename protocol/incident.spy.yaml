@@ -1,0 +1,26 @@
+# Serverpod Protocol Definition: Incident
+# Represents the primary emergency incident model stored in PostgreSQL and streamed in real-time.
+
+class: Incident
+table: incidents
+fields:
+  incidentCode: String # e.g. "INC-8041"
+  category: String
+  description: String
+  campusZone: String
+  roomNumber: String?
+  latitude: double
+  longitude: double
+  xRatio: double
+  yRatio: double
+  urgency: UrgencyLevel
+  status: IncidentStatus
+  timestamp: DateTime
+  assignedResponderId: String?
+  etaSeconds: int?
+
+indexes:
+  incident_status_idx:
+    fields: status
+  incident_zone_idx:
+    fields: campusZone
